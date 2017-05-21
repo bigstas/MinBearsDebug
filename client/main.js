@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor'
 import { render } from 'react-dom'
 import React from 'react'
     
-import Peaks from '../node_modules/peaks.js/peaks.js'
+/*import Peaks from '../node_modules/peaks.js/peaks.js'
 
 const myAudioContext = new AudioContext()
 
@@ -36,11 +36,11 @@ EditingPage = React.createClass({
         
         this.setState({ lies: "true" })
     }
-})
+})*/
 
     
-Meteor.startup(() => {
+/*Meteor.startup(() => {
     render(
         <EditingPage />,
         document.getElementById('content'))
-})
+})*/
