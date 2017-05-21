@@ -1,3 +1,4 @@
+/*
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
@@ -20,3 +21,25 @@ Template.hello.events({
     instance.counter.set(instance.counter.get() + 1);
   },
 });
+*/
+
+// Meteor startup script. Runs reactRoutes, and puts the result in the 'content' div in index.html.
+
+import { Meteor } from 'meteor/meteor'
+import { render } from 'react-dom'
+import React from 'react'
+
+const Hello = React.createClass({
+    render() {
+        return(
+            <p>Hello World</p>
+        )
+    }
+})
+    
+    
+Meteor.startup(() => {
+    render(
+        <Hello />,
+        document.getElementById('content'))
+})
