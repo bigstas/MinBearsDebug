@@ -21,7 +21,7 @@ var HelloWorldBanner =  React.createClass({
     )
   }
 })
-
+/*
 const VolumeSlider = React.createClass({
     getInitialState() {
         return {
@@ -41,5 +41,34 @@ const VolumeSlider = React.createClass({
         )
     }
 })
+*/
 
-ReactDOM.render(React.createElement(VolumeSlider), document.getElementById('content'))
+class VolumeSlider extends React.Component {
+  constructor(props, context) {
+    super(props, context)
+    this.state = {
+      volume: 0
+    }
+  }
+
+  handleOnChange(value) {
+    this.setState({
+      volume: value
+    })
+  }
+
+  render() {
+    let { volume } = this.state
+    return (
+      h('Slider', {value: this.state.volume, min: 0, max: 100, orientation: "vertical", onChange: this.handleOnChange}, null)
+    )
+  }
+}
+
+
+ReactDOM.render(h('div', null, 
+                  h('p', {style: {color: 'red', width: '100px'}}, 'Hello'),
+                  h('Slider', {min: 10, max: 100}), 
+                  h('VolumeSlider', {style: {width: '100px'}}),
+                  h('p', null, 'World')
+                 ), document.getElementById('content'))
