@@ -1,45 +1,46 @@
-/*
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
-
-import './main.html';
-
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
-
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
-
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
-});
-*/
-
-// Meteor startup script. Runs reactRoutes, and puts the result in the 'content' div in index.html.
-
 import { Meteor } from 'meteor/meteor'
 import { render } from 'react-dom'
 import React from 'react'
+    
+import Peaks from '../node_modules/peaks.js/peaks.js'
 
-const Hello = React.createClass({
+const myAudioContext = new AudioContext()
+
+EditingPage = React.createClass({
+    getInitialState() { return ({ lies: "false" }) },
+    
     render() {
         return(
-            <p>Hello World</p>
+            <div className='panel' id='edit'>
+                <p>Hello world</p>
+                <div id='audioContainer' ref='audioContainer'>
+                    <audio id={this.state.lies} ref={'mainAudio'} src={"bukk bukk.wav"} controls />
+                </div>
+            </div>
         )
+    },
+    
+    componentDidMount() {
+        const p = Peaks.init({
+            container: this.refs['audioContainer'],
+            mediaElement: this.refs['mainAudio'],
+            audioContext: myAudioContext,
+            keyboard: true,
+            logger: console.error.bind(console)
+        })
+
+        p.on('segments.ready', function(){
+            // do something when segments are ready to be displayed
+            console.log("everything is ready")
+        })
+        
+        this.setState({ lies: "true" })
     }
 })
-    
+
     
 Meteor.startup(() => {
     render(
-        <Hello />,
+        <EditingPage />,
         document.getElementById('content'))
 })
