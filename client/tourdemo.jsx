@@ -4,6 +4,7 @@ import React, { Component } from "react"
 import { render } from 'react-dom'
 import Tour from "react-user-tour"
 
+    
 class Demo extends Component {
 	constructor() {
 		super();
@@ -180,8 +181,8 @@ class Demo extends Component {
 	}
 }
 
-Meteor.startup(() => {
+/*Meteor.startup(() => {
     render(
         <Demo />,
         document.getElementById('content'))
-})
+})*/
