@@ -1,4 +1,4 @@
-var h = React.createElement
+//var h = React.createElement
 
 // from the demo provided in the readme
 /*
@@ -23,8 +23,9 @@ class VolumeSlider extends React.Component {
     )
   }
 }
-*/
+
 
 ReactDOM.render(h('div', null, 
                   h('Slider', {min: 10, max: 100})   
                  ), document.getElementById('content'))
+                 */
